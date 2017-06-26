@@ -45,12 +45,47 @@ function Comment(props){
   );
 }
 
+class Clock extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      date: new Date()
+    };
+  }
+
+  componentDidMount(){
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.timerID);
+  }
+
+  tick(){
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render(){
+    return(
+      <div>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
 function App(){
   return(
     <div>
-      <Welcome name="Butz" />
       <Welcome name="Bear" />
+      <Clock />
       <Welcome name="Cub" />
+      <Clock />
       <Comment
         author={author}
         text="I like React!"
@@ -59,6 +94,7 @@ function App(){
     </div>
   );
 }
+
 
 ReactDOM.render(
   <App />,
