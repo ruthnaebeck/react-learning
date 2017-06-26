@@ -9759,27 +9759,75 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function tick() {
-  var element = _react2.default.createElement(
-    'div',
+function Welcome(props) {
+  return _react2.default.createElement(
+    'h1',
     null,
-    _react2.default.createElement(
-      'h1',
-      null,
-      'Hello, world'
-    ),
-    _react2.default.createElement(
-      'h2',
-      null,
-      'It is ',
-      new Date().toLocaleTimeString(),
-      '.'
-    )
+    'Hello, ',
+    props.name
   );
-  _reactDom2.default.render(element, document.getElementById('main'));
 }
 
-setInterval(tick, 1000);
+var author = {
+  name: 'Bear Cub',
+  avatarUrl: 'images/bear.png'
+};
+
+function Avatar(props) {
+  return _react2.default.createElement('img', {
+    className: 'Avatar',
+    src: props.user.avatarUrl,
+    alt: props.user.name
+  });
+}
+
+function UserInfo(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'UserInfo' },
+    _react2.default.createElement(Avatar, { user: props.user }),
+    _react2.default.createElement(
+      'div',
+      { className: 'UserInfo-name' },
+      props.user.name
+    )
+  );
+}
+
+function Comment(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'Comment' },
+    _react2.default.createElement(UserInfo, { user: props.author }),
+    _react2.default.createElement(
+      'div',
+      { className: 'Comment-text' },
+      props.text
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'Comment-date' },
+      props.date
+    )
+  );
+}
+
+function App() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(Welcome, { name: 'Butz' }),
+    _react2.default.createElement(Welcome, { name: 'Bear' }),
+    _react2.default.createElement(Welcome, { name: 'Cub' }),
+    _react2.default.createElement(Comment, {
+      author: author,
+      text: 'I like React!',
+      date: '06/26/2017'
+    })
+  );
+}
+
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('main'));
 
 /***/ }),
 /* 82 */
