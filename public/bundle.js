@@ -9759,11 +9759,23 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+var user = {
+  firstName: 'Butz',
+  lastName: 'Bear'
+};
+
+var element = _react2.default.createElement(
   'h1',
   null,
-  'Hello, world!'
-), document.getElementById('main'));
+  'Hello, ',
+  formatName(user)
+);
+
+_reactDom2.default.render(element, document.getElementById('main'));
 
 /***/ }),
 /* 82 */
