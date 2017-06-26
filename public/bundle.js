@@ -9768,12 +9768,24 @@ var user = {
   lastName: 'Bear'
 };
 
-var element = _react2.default.createElement(
-  'h1',
-  null,
-  'Hello, ',
-  formatName(user)
-);
+function getGreeting(user) {
+  if (user) {
+    return _react2.default.createElement(
+      'h1',
+      null,
+      'Hello, ',
+      formatName(user),
+      '!'
+    );
+  }
+  return _react2.default.createElement(
+    'h1',
+    null,
+    'Hello, Stranger'
+  );
+}
+
+var element = getGreeting(user);
 
 _reactDom2.default.render(element, document.getElementById('main'));
 
