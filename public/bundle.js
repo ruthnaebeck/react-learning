@@ -9759,35 +9759,27 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function formatName(user) {
-  return user.firstName + ' ' + user.lastName;
-}
-
-var user = {
-  firstName: 'Butz',
-  lastName: 'Bear'
-};
-
-function getGreeting(user) {
-  if (user) {
-    return _react2.default.createElement(
+function tick() {
+  var element = _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
       'h1',
       null,
-      'Hello, ',
-      formatName(user),
-      '!'
-    );
-  }
-  return _react2.default.createElement(
-    'h1',
-    null,
-    'Hello, Stranger'
+      'Hello, world'
+    ),
+    _react2.default.createElement(
+      'h2',
+      null,
+      'It is ',
+      new Date().toLocaleTimeString(),
+      '.'
+    )
   );
+  _reactDom2.default.render(element, document.getElementById('main'));
 }
 
-var element = getGreeting(user);
-
-_reactDom2.default.render(element, document.getElementById('main'));
+setInterval(tick, 1000);
 
 /***/ }),
 /* 82 */
