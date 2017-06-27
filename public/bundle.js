@@ -9875,6 +9875,56 @@ var Clock = function (_React$Component) {
   return Clock;
 }(_react2.default.Component);
 
+function Button(props) {
+  function handleClick(evt) {
+    evt.preventDefault();
+    console.log('The button was clicked');
+  }
+  return _react2.default.createElement(
+    'button',
+    { onClick: handleClick },
+    'Click me'
+  );
+}
+
+var Toggle = function (_React$Component2) {
+  _inherits(Toggle, _React$Component2);
+
+  function Toggle(props) {
+    _classCallCheck(this, Toggle);
+
+    var _this3 = _possibleConstructorReturn(this, (Toggle.__proto__ || Object.getPrototypeOf(Toggle)).call(this, props));
+
+    _this3.state = {
+      isToggleOn: true
+    };
+    _this3.handleToggle = _this3.handleToggle.bind(_this3);
+    return _this3;
+  }
+
+  _createClass(Toggle, [{
+    key: 'handleToggle',
+    value: function handleToggle() {
+      this.setState(function (prevState) {
+        return {
+          isToggleOn: !prevState.isToggleOn
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'button',
+        { onClick: this.handleToggle },
+        this.state.isToggleOn ? 'ON' : 'OFF'
+      );
+    }
+  }]);
+
+  return Toggle;
+}(_react2.default.Component);
+
 function App() {
   return _react2.default.createElement(
     'div',
@@ -9887,7 +9937,9 @@ function App() {
       author: author,
       text: 'I like React!',
       date: '06/26/2017'
-    })
+    }),
+    _react2.default.createElement(Button, null),
+    _react2.default.createElement(Toggle, null)
   );
 }
 

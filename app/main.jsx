@@ -79,6 +79,40 @@ class Clock extends React.Component{
   }
 }
 
+function Button(props){
+  function handleClick(evt){
+    evt.preventDefault();
+    console.log('The button was clicked');
+  }
+  return(
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}
+
+class Toggle extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isToggleOn: true
+    };
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+  handleToggle(){
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }));
+  }
+  render(){
+    return(
+      <button onClick={this.handleToggle}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </button>
+    );
+  }
+}
+
 function App(){
   return(
     <div>
@@ -91,6 +125,8 @@ function App(){
         text="I like React!"
         date="06/26/2017"
       />
+      <Button />
+      <Toggle />
     </div>
   );
 }
