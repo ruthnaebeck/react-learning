@@ -9925,10 +9925,105 @@ var Toggle = function (_React$Component2) {
   return Toggle;
 }(_react2.default.Component);
 
+function UserGreeting(props) {
+  return _react2.default.createElement(
+    'h4',
+    null,
+    'Welcome back!'
+  );
+}
+
+function GuestGreeting(props) {
+  return _react2.default.createElement(
+    'h4',
+    null,
+    'Please sign up.'
+  );
+}
+
+function Greeting(props) {
+  var isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return _react2.default.createElement(UserGreeting, null);
+  } else {
+    return _react2.default.createElement(GuestGreeting, null);
+  }
+}
+
+function LoginButton(props) {
+  return _react2.default.createElement(
+    'button',
+    { onClick: props.onClick },
+    'Login'
+  );
+}
+
+function LogoutButton(props) {
+  return _react2.default.createElement(
+    'button',
+    { onClick: props.onClick },
+    'Logout'
+  );
+}
+
+var LoginControl = function (_React$Component3) {
+  _inherits(LoginControl, _React$Component3);
+
+  function LoginControl(props) {
+    _classCallCheck(this, LoginControl);
+
+    var _this4 = _possibleConstructorReturn(this, (LoginControl.__proto__ || Object.getPrototypeOf(LoginControl)).call(this, props));
+
+    _this4.handleLoginClick = _this4.handleLoginClick.bind(_this4);
+    _this4.handleLogoutClick = _this4.handleLogoutClick.bind(_this4);
+    _this4.state = {
+      isLoggedIn: false
+    };
+    return _this4;
+  }
+
+  _createClass(LoginControl, [{
+    key: 'handleLoginClick',
+    value: function handleLoginClick() {
+      this.setState({
+        isLoggedIn: true
+      });
+    }
+  }, {
+    key: 'handleLogoutClick',
+    value: function handleLogoutClick() {
+      this.setState({
+        isLoggedIn: false
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var isLoggedIn = this.state.isLoggedIn;
+      var button = null;
+      if (isLoggedIn) {
+        button = _react2.default.createElement(LogoutButton, { onClick: this.handleLogoutClick });
+      } else {
+        button = _react2.default.createElement(LoginButton, { onClick: this.handleLoginClick });
+      }
+
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(Greeting, { isLoggedIn: isLoggedIn }),
+        button
+      );
+    }
+  }]);
+
+  return LoginControl;
+}(_react2.default.Component);
+
 function App() {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement(LoginControl, null),
     _react2.default.createElement(Welcome, { name: 'Bear' }),
     _react2.default.createElement(Clock, null),
     _react2.default.createElement(Welcome, { name: 'Cub' }),
