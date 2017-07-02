@@ -10095,6 +10095,24 @@ var Page = function (_React$Component4) {
   return Page;
 }(_react2.default.Component);
 
+var numbers = [1, 2, 3, 4, 5];
+
+function NumberList(props) {
+  var nums = props.numbers;
+  var listItems = nums.map(function (num) {
+    return _react2.default.createElement(
+      'li',
+      { key: num.toString() },
+      num
+    );
+  });
+  return _react2.default.createElement(
+    'ul',
+    null,
+    listItems
+  );
+}
+
 function App() {
   return _react2.default.createElement(
     'div',
@@ -10112,7 +10130,8 @@ function App() {
     _react2.default.createElement(Button, null),
     _react2.default.createElement(Toggle, null),
     _react2.default.createElement(Mailbox, { unreadMessages: messages }),
-    _react2.default.createElement(Page, null)
+    _react2.default.createElement(Page, null),
+    _react2.default.createElement(NumberList, { numbers: numbers })
   );
 }
 

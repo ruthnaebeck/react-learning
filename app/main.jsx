@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Welcome(props){
+function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
@@ -10,8 +10,8 @@ const author = {
   avatarUrl: 'images/bear.png'
 };
 
-function Avatar(props){
-  return(
+function Avatar(props) {
+  return (
     <img
       className="Avatar"
       src={props.user.avatarUrl}
@@ -20,8 +20,8 @@ function Avatar(props){
   );
 }
 
-function UserInfo(props){
-  return(
+function UserInfo(props) {
+  return (
     <div className="UserInfo">
       <Avatar user={props.user} />
       <div className="UserInfo-name">
@@ -31,8 +31,8 @@ function UserInfo(props){
   );
 }
 
-function Comment(props){
-  return(
+function Comment(props) {
+  return (
     <div className="Comment">
       <UserInfo user={props.author} />
       <div className="Comment-text">
@@ -45,33 +45,33 @@ function Comment(props){
   );
 }
 
-class Clock extends React.Component{
-  constructor(props){
+class Clock extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       date: new Date()
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.timerID = setInterval(
       () => this.tick(),
       1000
     );
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.timerID);
   }
 
-  tick(){
+  tick() {
     this.setState({
       date: new Date()
     });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
       </div>
@@ -79,33 +79,33 @@ class Clock extends React.Component{
   }
 }
 
-function Button(props){
-  function handleClick(evt){
+function Button(props) {
+  function handleClick(evt) {
     evt.preventDefault();
     console.log('The button was clicked');
   }
-  return(
+  return (
     <button onClick={handleClick}>
       Click me
     </button>
   );
 }
 
-class Toggle extends React.Component{
-  constructor(props){
+class Toggle extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       isToggleOn: true
     };
     this.handleToggle = this.handleToggle.bind(this);
   }
-  handleToggle(){
+  handleToggle() {
     this.setState(prevState => ({
       isToggleOn: !prevState.isToggleOn
     }));
   }
-  render(){
-    return(
+  render() {
+    return (
       <button onClick={this.handleToggle}>
         {this.state.isToggleOn ? 'ON' : 'OFF'}
       </button>
@@ -113,24 +113,24 @@ class Toggle extends React.Component{
   }
 }
 
-function UserGreeting(props){
+function UserGreeting(props) {
   return <h4>Welcome back!</h4>;
 }
 
-function GuestGreeting(props){
+function GuestGreeting(props) {
   return <h4>Please sign up.</h4>;
 }
 
-function Greeting(props){
+function Greeting(props) {
   const isLoggedIn = props.isLoggedIn;
-  if(isLoggedIn){
+  if (isLoggedIn) {
     return <UserGreeting />;
-  }else{
+  } else {
     return <GuestGreeting />;
   }
 }
 
-function LoginButton(props){
+function LoginButton(props) {
   return (
     <button onClick={props.onClick}>
       Login
@@ -138,7 +138,7 @@ function LoginButton(props){
   );
 }
 
-function LogoutButton(props){
+function LogoutButton(props) {
   return (
     <button onClick={props.onClick}>
       Logout
@@ -146,8 +146,8 @@ function LogoutButton(props){
   );
 }
 
-class LoginControl extends React.Component{
-  constructor(props){
+class LoginControl extends React.Component {
+  constructor(props) {
     super(props);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleLogoutClick = this.handleLogoutClick.bind(this);
@@ -155,22 +155,22 @@ class LoginControl extends React.Component{
       isLoggedIn: false
     };
   }
-  handleLoginClick(){
+  handleLoginClick() {
     this.setState({
       isLoggedIn: true
     });
   }
-  handleLogoutClick(){
+  handleLogoutClick() {
     this.setState({
       isLoggedIn: false
     });
   }
-  render(){
+  render() {
     const isLoggedIn = this.state.isLoggedIn;
     let button = null;
-    if(isLoggedIn){
+    if (isLoggedIn) {
       button = <LogoutButton onClick={this.handleLogoutClick} />;
-    }else{
+    } else {
       button = <LoginButton onClick={this.handleLoginClick} />;
     }
 
@@ -200,7 +200,7 @@ function Mailbox(props) {
 const messages = ['React', 'Re: React', 'Re:Re: React'];
 
 function WarningBanner(props) {
-  if(!props.warn){
+  if (!props.warn) {
     return null;
   }
   return (
@@ -211,14 +211,14 @@ function WarningBanner(props) {
 }
 
 class Page extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showWarning: true
     };
     this.handleToggleClick = this.handleToggleClick.bind(this);
   }
-  handleToggleClick(){
+  handleToggleClick() {
     this.setState(prevState => ({
       showWarning: !prevState.showWarning
     }));
@@ -235,8 +235,20 @@ class Page extends React.Component {
   }
 }
 
-function App(){
-  return(
+const numbers = [1, 2, 3, 4, 5];
+
+function NumberList(props) {
+  const nums = props.numbers;
+  const listItems = nums.map(num =>
+    <li key={num.toString()}>{num}</li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
+function App() {
+  return (
     <div>
       <LoginControl />
       <Welcome name="Bear" />
@@ -252,6 +264,7 @@ function App(){
       <Toggle />
       <Mailbox unreadMessages={messages} />
       <Page />
+      <NumberList numbers={numbers} />
     </div>
   );
 }
