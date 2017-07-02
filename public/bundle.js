@@ -10019,6 +10019,82 @@ var LoginControl = function (_React$Component3) {
   return LoginControl;
 }(_react2.default.Component);
 
+function Mailbox(props) {
+  var unreadMessages = props.unreadMessages;
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'Hello!'
+    ),
+    unreadMessages.length > 0 && _react2.default.createElement(
+      'h2',
+      null,
+      'You have ',
+      unreadMessages.length,
+      ' unread messages.'
+    )
+  );
+}
+
+var messages = ['React', 'Re: React', 'Re:Re: React'];
+
+function WarningBanner(props) {
+  if (!props.warn) {
+    return null;
+  }
+  return _react2.default.createElement(
+    'div',
+    { className: 'warning' },
+    'Warning!'
+  );
+}
+
+var Page = function (_React$Component4) {
+  _inherits(Page, _React$Component4);
+
+  function Page(props) {
+    _classCallCheck(this, Page);
+
+    var _this5 = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
+
+    _this5.state = {
+      showWarning: true
+    };
+    _this5.handleToggleClick = _this5.handleToggleClick.bind(_this5);
+    return _this5;
+  }
+
+  _createClass(Page, [{
+    key: 'handleToggleClick',
+    value: function handleToggleClick() {
+      this.setState(function (prevState) {
+        return {
+          showWarning: !prevState.showWarning
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(WarningBanner, { warn: this.state.showWarning }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.handleToggleClick },
+          this.state.showWarning ? 'Hide' : 'Show'
+        )
+      );
+    }
+  }]);
+
+  return Page;
+}(_react2.default.Component);
+
 function App() {
   return _react2.default.createElement(
     'div',
@@ -10034,7 +10110,9 @@ function App() {
       date: '06/26/2017'
     }),
     _react2.default.createElement(Button, null),
-    _react2.default.createElement(Toggle, null)
+    _react2.default.createElement(Toggle, null),
+    _react2.default.createElement(Mailbox, { unreadMessages: messages }),
+    _react2.default.createElement(Page, null)
   );
 }
 
